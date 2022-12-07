@@ -125,7 +125,8 @@ class GenreViewSet(CreateListDestroyViewSet):
 class TitleViewSet(viewsets.ModelViewSet):
     """Вьюсет для создания обьектов класса Title."""
 
-    queryset = Title.objects.annotate(rating=Avg('reviews__score')).order_by('-year', 'name')
+    queryset = Title.objects.annotate(
+        rating=Avg('reviews__score')).order_by('-year', 'name')
     serializer_class = TitleSerializer
     permission_classes = (AllowAny,)
     filter_backends = (filterbackend.DjangoFilterBackend,)
