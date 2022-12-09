@@ -6,7 +6,7 @@ def send_email_code(user):
     confirm_code = default_token_generator.make_token(user=user)
     subj = 'Код подтверждения'
     message = confirm_code
-    from_email = 'admin@gmail.com'
+    from_email = None
     to_email = user.email
     return send_mail(subj, message, from_email, [to_email],
                      fail_silently=False)

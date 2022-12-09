@@ -1,27 +1,15 @@
 from datetime import datetime
 
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 from django.core.validators import (
     MaxValueValidator,
     MinValueValidator,
     RegexValidator
 )
 
-ROLES = (
-    ('user', 'user'),
-    ('moderator', 'moderator'),
-    ('admin', 'admin')
-)
+from users.models import User
 
-
-class User(AbstractUser):
-    username = models.CharField(max_length=150, unique=True)
-    email = models.EmailField(max_length=254, unique=True)
-    first_name = models.CharField(max_length=150, blank=True)
-    last_name = models.CharField(max_length=150, blank=True)
-    bio = models.TextField(blank=True)
-    role = models.CharField(max_length=10, choices=ROLES, default='user')
+CHARS_IN_STR = 15
 
 
 class Category(models.Model):
@@ -201,7 +189,7 @@ class Review(models.Model):
         )
 
     def __str__(self):
-        return self.text
+        return self.text[:CHARS_IN_STR]
 
 
 class Comment(models.Model):
@@ -234,4 +222,4 @@ class Comment(models.Model):
         ordering = ('-pub_date',)
 
     def __str__(self):
-        return self.text
+        return self.text[:CHARS_IN_STR]

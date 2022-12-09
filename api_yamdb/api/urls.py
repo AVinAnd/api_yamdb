@@ -3,13 +3,10 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .serializers import TokenSerializer
-from .views import (SignUpViewSet, UsersViewSet, CategoryViewSet,
-                    CommentViewSet, GenreViewSet, ReviewViewSet, TitleViewSet)
+from .views import (signup, UsersViewSet, CategoryViewSet, CommentViewSet,
+                    GenreViewSet, ReviewViewSet, TitleViewSet)
 
 app_name = 'api'
-
-auth_router_v1 = DefaultRouter()
-auth_router_v1.register(r'signup', SignUpViewSet)
 
 users_router_v1 = DefaultRouter()
 users_router_v1.register(r'', UsersViewSet)
@@ -28,7 +25,7 @@ router_v1.register(
 )
 
 urlpatterns = [
-    path('v1/auth/', include(auth_router_v1.urls)),
+    path('v1/auth/signup/', signup),
     path('v1/users/', include(users_router_v1.urls)),
     path(
         'v1/auth/token/',

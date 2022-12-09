@@ -4,7 +4,8 @@ from rest_framework import serializers, exceptions
 from rest_framework_simplejwt.tokens import AccessToken
 
 
-from reviews.models import User, Category, Comment, Genre, Review, Title
+from reviews.models import Category, Comment, Genre, Review, Title
+from users.models import User
 
 USERNAME_REGEX = r'^(?!me\Z)^[\w.@+-]+\Z'
 USERNAME_FIELD = serializers.RegexField(USERNAME_REGEX, max_length=150)
@@ -48,7 +49,7 @@ class TokenSerializer(serializers.ModelSerializer):
             token = AccessToken.for_user(user)
             return {'token': str(token)}
 
-        raise exceptions.ParseError("Введен не верный код")
+        raise exceptions.ValidationError('Введен не верный код')
 
 
 class UsersSerializer(serializers.ModelSerializer):
