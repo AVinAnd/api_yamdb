@@ -33,8 +33,6 @@ def signup(request):
             email=serializer.validated_data['email']
         )
         send_email_code(user)
-        if not created:
-            serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
