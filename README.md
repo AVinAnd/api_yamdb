@@ -24,7 +24,7 @@ http://0.0.0.0:8000/redoc/
 
 ```
 python -m venv venv
-source venv/Scripts/activate
+source venv/scripts/activate
 ```
 - Установите зависимости
 
