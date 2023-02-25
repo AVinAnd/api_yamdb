@@ -28,7 +28,9 @@ source venv/scripts/activate
 ```
 - Установите зависимости
 
-``` pip install -r requirements.txt ```
+``` 
+pip install -r requirements.txt
+```
 - Выполните миграции 
 ```
 python manage.py makemigrations
